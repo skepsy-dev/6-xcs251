@@ -75,11 +75,12 @@ Arguments:
  */
 function computeInput(depth, transcript, nullifier) {
     // TODO
-    var obj {};
-    // look up how to add obj key: value pairs
+    var smt = constructor()
 
+    // obj.digest = "";
+        obj.digest = digest()
     //  call functions in src/sparse_merkle_tree.js
-
+      
 
     return obj;
 }

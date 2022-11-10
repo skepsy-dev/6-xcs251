@@ -12,11 +12,11 @@ template IfThenElse() {
     signal input true_value;
     signal input false_value;
     signal output out;
-    signal net;
+    signal net; 
 
     // TODO
     // Hint: You will need a helper signal...
-    condition * (1 - condition) === 0
+    condition * (1 - condition) === 0;
 
     net <== (true_value - false_value) * condition;
 
@@ -76,28 +76,28 @@ template Spend(depth) {
     signal private input sibling[depth];
     signal private input direction[depth];
 
-    // TODO
-    component hashes[1+depth];
-    component selections[depth];
+    // // TODO
+    // component hashes[1+depth];
+    // component selections[depth];
 
-    h[0] <== Mimc2();
-    h[0].in0 <== nullifier;
-    h[0].in1 <== nonce;
+    // hashes[0] <== Mimc2();
+    // hashes[0].in0 <== nullifier;
+    // hashes[0].in1 <== nonce;
 
-    for (i = 0; i < depth; i++) {
-        direction[i] * (1 - direction[i]) === 0
+    // for (var i = 0; i < depth; i++) {
+    //     direction[i] * (1 - direction[i]) === 0
 
-        selections[i] <== SelectiveSwitch();
-        selections[i].s <== direction[i];
-        selections[i].in0 <== sibling[i];
-        selections[i].in1 <== sibling[i + 1]; // DBL Check this input
+    //     selections[i] <== SelectiveSwitch();
+    //     selections[i].s <== direction[i];
+    //     selections[i].in0 <== sibling[i];
+    //     selections[i].in1 <== sibling[i + 1]; // DBL Check this input
 
-        hashes[i + 1] <== Mimc2();
-        hashes[i + 1].in0 <== selections[i].out0;
-        hashes[i + 1].in1 <== selections[i].out1;
+    //     hashes[i + 1] <== Mimc2();
+    //     hashes[i + 1].in0 <== selections[i].out0;
+    //     hashes[i + 1].in1 <== selections[i].out1;
 
-    }
-    // checking to confirm the digest is equal to the hash of array of all hashes
-    digest === hashes[depth].out;
+    // }
+    // // checking to confirm the digest is equal to the hash of array of all hashes
+    // digest === hashes[depth].out;
  
 }
